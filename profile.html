@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Profilim - KralPin</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="script.js" defer></script>
+</head>
+<body class="bg-gray-900 text-white">
+  <header class="bg-gray-800 p-4 flex justify-between items-center">
+    <h1 class="text-2xl font-bold text-green-400">KralPin</h1>
+    <nav>
+      <a href="index.html" class="mx-3 hover:text-green-400">Ürünler</a>
+      <a href="cart.html" class="mx-3 hover:text-green-400">Sepet</a>
+      <a href="#" id="logoutBtn" class="mx-3 text-red-400 hover:underline">Çıkış Yap</a>
+    </nav>
+  </header>
+
+  <main class="p-6 max-w-2xl mx-auto">
+    <h2 class="text-2xl font-bold mb-4 text-green-400">Kullanıcı Profili</h2>
+    <div class="mb-6 p-4 bg-gray-800 rounded">
+      <p><strong>Kullanıcı Adı:</strong> <span id="profile-username">...</span></p>
+      <p><strong>E-posta:</strong> <span id="profile-email">...</span></p>
+      <p><strong>Doğrulama:</strong> <span id="profile-verified" class="text-green-400">Doğrulandı ✅</span></p>
+    </div>
+    <div class="mt-4"><a href="change-password.html" class="text-blue-400 hover:underline">Şifreni Değiştir</a></div>
+    <div class="p-4 bg-gray-800 rounded mt-4">
+      <h3 class="text-lg font-semibold mb-2">Satın Alma Geçmişi</h3>
+      <ul id="purchase-history" class="list-disc ml-6 text-sm text-gray-300"></ul>
+    </div>
+  </main>
+</body>
+</html>

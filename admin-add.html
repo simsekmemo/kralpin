@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Yeni Admin Ekle - KralPin</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      if (localStorage.getItem("isAdmin") !== "true") {
+        alert("Bu sayfaya erişim yetkiniz yok.");
+        window.location.href = "admin.html";
+        return;
+      }
+
+      document.getElementById("add-admin-form").addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const newUsername = document.getElementById("new-admin-username").value.trim();
+        const newPassword = document.getElementById("new-admin-password").value.trim();
+        const msg = document.getElementById("admin-add-msg");
+
+        if (!newUsername || !newPassword) {
+          msg.textContent = "Boş alan bırakmayın!";
+          msg.classList.remove("text-green-400");
+          msg.classList.add("text-red-400");
+          return;
+        }
+
+        const admins = JSON.parse(localStorage.getItem("adminUsers") || "[]");
+        const exists = admins.some(admin => admin.username === newUsername);
+
+        if (exists) {
+          msg.textContent = "Bu kullanıcı zaten var!";
+          msg.classList.remove("text-green-400");
+          msg.classList.add("text-red-400");
+          return;
+        }
+
+        admins.push({ username: newUsername, password: newPassword });
+        localStorage.setItem("adminUsers", JSON.stringify(admins));
+
+        msg.textContent = "Yeni admin başarıyla eklendi!";
+        msg.classList.remove("text-red-400");
+        msg.classList.add("text-green-400");
+        this.reset();
+      });
+    });
+  </script>
+</head>
+<body class="bg-gray-900 text-white flex items-center justify-center min-h-screen">
+  <div class="bg-gray-800 p-6 rounded shadow-md w-full max-w-md">
+    <h1 class="text-2xl font-bold mb-4 text-green-400 text-center">Yeni Admin Ekle</h1>
+    <form id="add-admin-form" class="space-y-4">
+      <div>
+        <label for="new-admin-username" class="block mb-1">Yeni Kullanıcı Adı</label>
+        <input id="new-admin-username" type="text" class="w-full p-2 bg-gray-700 text-white rounded" required />
+      </div>
+      <div>
+        <label for="new-admin-password" class="block mb-1">Yeni Şifre</label>
+        <input id="new-admin-password" type="password" class="w-full p-2 bg-gray-700 text-white rounded" required />
+      </div>
+      <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded w-full">Admin Ekle</button>
+    </form>
+    <p id="admin-add-msg" class="text-sm mt-3 text-center"></p>
+  </div>
+</body>
+</html>

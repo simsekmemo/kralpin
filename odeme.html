@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Ödeme Başarılı - KralPin</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const mesaj = document.getElementById("mesaj");
+      mesaj.textContent = "Ödemeniz alındı. Siparişiniz hazırlanıyor...";
+
+      setTimeout(() => {
+        mesaj.textContent = "Kodlarınız hazırlanıyor. Lütfen bekleyin...";
+      }, 2000);
+
+      setTimeout(() => {
+        window.location.href = "profile.html";
+      }, 5000);
+    });
+  </script>
+</head>
+<body class="bg-gray-900 text-white flex items-center justify-center min-h-screen">
+  <div class="text-center p-6 bg-gray-800 rounded shadow-lg">
+    <h1 class="text-3xl font-bold text-green-400 mb-4">Teşekkürler!</h1>
+    <p id="mesaj" class="text-lg text-white">Yükleniyor...</p>
+    <p class="text-sm text-gray-400 mt-4">Otomatik olarak yönlendirileceksiniz...</p>
+  </div>
+</body>
+</html>

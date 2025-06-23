@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>İletişim - KralPin</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex flex-col">
+  <header class="bg-gray-800 p-4 flex justify-between items-center">
+    <h1 class="text-2xl font-bold text-green-400">KralPin</h1>
+    <nav>
+      <a href="index.html" class="mx-3 hover:text-green-400">Ana Sayfa</a>
+      <a href="admin.html" class="mx-3 hover:text-green-400">Giriş Yap</a>
+      <a href="cart.html" class="mx-3 hover:text-green-400">Sepet</a>
+      <a href="iletisim.html" class="mx-3 text-green-400 font-bold underline">İletişim</a>
+    </nav>
+  </header>
+
+  <main class="flex-grow p-6 text-center">
+    <h2 class="text-3xl font-bold text-green-400 mb-4">İletişim</h2>
+    <p class="text-lg text-gray-300">Yardım ve destek için <span class="text-green-300 font-semibold">551 884 82 33</span> veya <span class="text-green-300 font-semibold">551 676 90 50</span> numaralarından bize ulaşabilirsiniz.</p>
+  </main>
+<section class="mt-10 text-left max-w-lg mx-auto bg-gray-800 p-6 rounded">
+    <h3 class="text-2xl font-bold text-green-400 mb-4">Bize Mesaj Gönderin</h3>
+    <form id="contact-form" class="space-y-4">
+      <input type="text" placeholder="Adınız" required class="w-full p-2 rounded bg-gray-700 text-white">
+      <input type="email" placeholder="E-posta adresiniz" required class="w-full p-2 rounded bg-gray-700 text-white">
+      <textarea placeholder="Mesajınız" required class="w-full p-2 rounded bg-gray-700 text-white h-32"></textarea>
+      <button type="submit" class="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded">Gönder</button>
+    </form>
+    <p id="form-response" class="mt-4 text-sm text-green-400 hidden">Mesajınız başarıyla gönderildi. (Simülasyon)</p>
+  </section>
+
+  <script>
+    const form = document.getElementById("contact-form");
+    const response = document.getElementById("form-response");
+
+    if (form) {
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        // Gönderiliyor mesajı göster
+        response.textContent = "Mesaj gönderiliyor...";
+        response.classList.remove("hidden", "text-green-400");
+        response.classList.add("text-yellow-400");
+
+        // Simülasyon gecikmesi: 2 saniye sonra başarılı mesaj
+        setTimeout(() => {
+          response.textContent = "Mesajınız başarıyla gönderildi. (Simülasyon)";
+          response.classList.remove("text-yellow-400");
+          response.classList.add("text-green-400");
+          form.reset();
+        }, 2000);
+      });
+    }
+  </script>
+
+  <footer class="bg-gray-800 text-center p-4 text-gray-500">
+    &copy; 2025 KralPin. Tüm hakları saklıdır.
+  </footer>
+</body>
+</html>

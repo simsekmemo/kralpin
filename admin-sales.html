@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Satış Geçmişi - KralPin</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="script.js" defer></script>
+</head>
+<body class="bg-gray-900 text-white">
+  <header class="bg-gray-800 p-4 flex justify-between items-center">
+    <h1 class="text-2xl font-bold text-green-400">KralPin Admin</h1>
+    <nav>
+      <a href="dashboard.html" class="mx-3 hover:text-green-400">Ürün Paneli</a>
+      <a href="admin.html" onclick="logout()" class="mx-3 text-red-400 hover:underline">Çıkış Yap</a>
+    </nav>
+  </header>
+
+  <main class="p-6 max-w-4xl mx-auto">
+    <h2 class="text-2xl font-bold text-green-400 mb-4">Satış Geçmişi</h2>
+    <div id="admin-sales-list" class="space-y-4">
+      <!-- JS ile satış geçmişi burada listelenecek -->
+    </div>
+  </main>
+</body>
+</html>
