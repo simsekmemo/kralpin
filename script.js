@@ -214,3 +214,64 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 });
+
+function renderCart() {
+  const cartContainer = document.getElementById("cart");
+  const totalText = document.getElementById("total");
+  const clearBtn = document.getElementById("clear-cart");
+  if (!cartContainer || !totalText || !clearBtn) return;
+
+  const cart = JSON.parse(localStorage.getItem("cart") || []);
+  if (cart.length === 0) {
+    cartContainer.innerHTML = "<p class='text-gray-400'>Sepetiniz boş.</p>";
+    totalText.textContent = "";
+    return;
+  }
+
+  let total = 0;
+  cartContainer.innerHTML = cart.map((item, index) => {
+    const numericPrice = parseFloat(item.price.replace(" TL", ""));
+    total += numericPrice;
+    return `
+      <div class="bg-gray-800 p-4 rounded mb-2 flex justify-between items-center">
+        <div>
+          <h3 class="text-white font-semibold">${item.title} - ${item.option}</h3>
+          <p class="text-green-400">${item.price}</p>
+        </div>
+        <button onclick="removeItem(${index})" class="text-red-400 hover:underline">Sil</button>
+      </div>
+    `;
+  }).join("");
+
+  totalText.textContent = `Toplam: ${total.toFixed(2)} TL`;
+
+  clearBtn.onclick = () => {
+    localStorage.removeItem("cart");
+    renderCart();
+  };
+}
+
+function removeItem(index) {
+  const cart = JSON.parse(localStorage.getItem("cart") || []);
+  cart.splice(index, 1);
+  localStorage.setItem("cart", JSON.stringify(cart));
+  renderCart();
+}
+
+// Sayfa yüklendiğinde sepeti göster
+document.addEventListener("DOMContentLoaded", () => {
+  if (document.getElementById("cart")) renderCart();
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const adminLink = document.getElementById("adminLink");
+  const currentUser = JSON.parse(localStorage.getItem("currentUser") || "{}");
+
+  if (adminLink) {
+    if (currentUser.role === "admin") {
+      adminLink.style.display = "inline";
+    } else {
+      adminLink.style.display = "none";
+    }
+  }
+});
