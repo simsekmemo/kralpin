@@ -201,3 +201,16 @@ if (document.getElementById("loginForm")) {
     }
   });
 }
+
+// 👑 Admin menüsünü sadece admin kullanıcılarda göster
+document.addEventListener("DOMContentLoaded", () => {
+  const adminLink = document.getElementById("adminLink");
+  const currentUser = JSON.parse(localStorage.getItem("currentUser") || "{}");
+  if (adminLink) {
+    if (currentUser.role === "admin") {
+      adminLink.style.display = "inline";
+    } else {
+      adminLink.style.display = "none";
+    }
+  }
+});
