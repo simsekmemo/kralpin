@@ -3,24 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <title>Favorilerim - KralPin</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <script src="script.js" defer></script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-900 text-white min-h-screen">
+<body class="bg-gray-900 text-white min-h-screen" style="background-image: url('img/Arkaplan.png'); background-size: cover; background-position: center;">
   <header class="bg-gray-800 p-4 flex justify-between items-center">
     <h1 class="text-2xl font-bold text-green-400">KralPin</h1>
     <nav>
-      <a href="index.html" class="mx-2 hover:text-green-400">Ana Sayfa</a>
-      <a href="cart.html" class="mx-2 hover:text-green-400">Sepet</a>
-      <a href="profile.html" class="mx-2 hover:text-green-400">Profil</a>
+      <a href="index.html" class="mx-3 hover:text-green-400">Ana Sayfa</a>
+      <a href="cart.html" class="mx-3 hover:text-green-400">Sepet</a>
+      <a href="profile.html" class="mx-3 hover:text-green-400">Profil</a>
     </nav>
   </header>
 
   <main class="p-6 max-w-6xl mx-auto">
-    <h2 class="text-3xl font-bold mb-6 text-green-400">Favorilerim</h2>
-    <div id="favorites-list" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-      <!-- Favori ürünler JS ile buraya eklenecek -->
-    </div>
+    <h2 class="text-3xl font-bold mb-6 text-green-400">Favori Ürünlerim</h2>
+    <section id="favorites-list" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <!-- JS ile favoriler burada listelenecek -->
+    </section>
   </main>
 </body>
 </html>

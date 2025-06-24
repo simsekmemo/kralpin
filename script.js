@@ -250,3 +250,32 @@ document.addEventListener("DOMContentLoaded", () => {
   if (document.getElementById("product-list")) renderProducts();
   if (document.getElementById("cart")) renderCart();
 });
+
+function renderFavorites() {
+  const favoritesContainer = document.getElementById("favorites-list");
+  if (!favoritesContainer) return;
+
+  const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
+  const products = getProducts();
+
+  const favoriteProducts = products.filter(p => favorites.includes(p.title));
+
+  if (favoriteProducts.length === 0) {
+    favoritesContainer.innerHTML = "<p class='text-gray-400'>Favori ürün bulunamadı.</p>";
+    return;
+  }
+
+  favoritesContainer.innerHTML = favoriteProducts.map(p => `
+    <div class="bg-gray-800 p-4 rounded shadow">
+      <img src="${p.image}" alt="${p.title}" class="mb-4 rounded w-full h-40 object-cover bg-black p-1">
+      <h3 class="text-xl font-semibold mb-2 flex items-center gap-2">
+        <img src="${p.icon}" alt="icon" class="w-6 h-6 rounded"> ${p.title}
+      </h3>
+      <p class="text-green-400 font-bold">${p.options[0].price}</p>
+    </div>
+  `).join("");
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  if (document.getElementById("favorites-list")) renderFavorites();
+});
