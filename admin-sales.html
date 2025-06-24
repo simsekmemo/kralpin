@@ -8,17 +8,18 @@
 </head>
 <body class="bg-gray-900 text-white">
   <header class="bg-gray-800 p-4 flex justify-between items-center">
-    <h1 class="text-2xl font-bold text-green-400">KralPin Admin</h1>
+    <h1 class="text-2xl font-bold text-green-400">KralPin Admin Panel</h1>
     <nav>
-      <a href="dashboard.html" class="mx-3 hover:text-green-400">Ürün Paneli</a>
-      <a href="admin.html" onclick="logout()" class="mx-3 text-red-400 hover:underline">Çıkış Yap</a>
+      <a href="dashboard.html" class="mx-3 hover:text-green-400">Ürün Yönetimi</a>
+      <a href="admin-sales.html" class="mx-3 hover:text-green-400">Satışlar</a>
+      <a href="#" id="logoutBtn" class="mx-3 text-red-400 hover:underline">Çıkış Yap</a>
     </nav>
   </header>
 
   <main class="p-6 max-w-4xl mx-auto">
-    <h2 class="text-2xl font-bold text-green-400 mb-4">Satış Geçmişi</h2>
-    <div id="admin-sales-list" class="space-y-4">
-      <!-- JS ile satış geçmişi burada listelenecek -->
+    <h2 class="text-2xl font-bold text-green-400 mb-4">Satış Geçmişi ve Kod Atama</h2>
+    <div id="admin-sales-container" class="space-y-4">
+      <!-- JS ile satışlar buraya yüklenecek -->
     </div>
   </main>
 </body>

@@ -2,50 +2,23 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
-  <title>Admin Paneli - Giriş</title>
+  <title>Admin Giriş - KralPin</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <script src="script.js" defer></script>
 </head>
-<body class="bg-gray-900 text-white flex items-center justify-center min-h-screen">
-  <div class="bg-gray-800 p-6 rounded shadow-md w-full max-w-md">
-    <h1 class="text-2xl font-bold mb-4 text-green-400 text-center">Admin Giriş</h1>
-    <form id="login-form" class="space-y-4">
-      <div>
-        <label for="admin-username" class="block mb-1">Kullanıcı Adı</label>
-        <input id="admin-username" type="text" class="w-full p-2 bg-gray-700 text-white rounded" required />
-      </div>
-      <div>
-        <label for="admin-password" class="block mb-1">Şifre</label>
-        <input id="admin-password" type="password" class="w-full p-2 bg-gray-700 text-white rounded" required />
-      </div>
-      <button type="submit" class="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded w-full">Giriş Yap</button>
-    </form>
-    <p id="login-error" class="text-red-400 text-sm mt-3 hidden">Kullanıcı adı veya şifre hatalı.</p>
-  </div>
-
-  <script>
-    document.getElementById("login-form").addEventListener("submit", function (e) {
-      e.preventDefault();
-      const username = document.getElementById("admin-username").value.trim();
-      const password = document.getElementById("admin-password").value.trim();
-
-      const admins = JSON.parse(localStorage.getItem("adminUsers") || "[]");
-      const found = admins.find(a => a.username === username && a.password === password);
-
-      if (found) {
-        localStorage.setItem("isAdmin", "true");
-        localStorage.setItem("currentAdmin", JSON.stringify(found));
-        window.location.href = "dashboard.html";
-      } else {
-        document.getElementById("login-error").classList.remove("hidden");
-      }
-    });
-
-    // İlk kurulum admin
-    if (!localStorage.getItem("adminUsers")) {
-      const defaultAdmins = [{ username: "admin", password: "admin123" }];
-      localStorage.setItem("adminUsers", JSON.stringify(defaultAdmins));
-    }
-  </script>
+<body class="bg-gray-900 text-white">
+  <main class="flex items-center justify-center min-h-screen">
+    <div class="bg-gray-800 p-6 rounded shadow-md w-full max-w-md">
+      <h1 class="text-2xl font-bold text-green-400 mb-4 text-center">Admin Giriş</h1>
+      <form id="adminLoginForm" class="space-y-4">
+        <input id="admin-email" type="email" placeholder="Admin E-posta" required class="w-full p-2 bg-gray-700 text-white rounded">
+        <input id="admin-password" type="password" placeholder="Şifre" required class="w-full p-2 bg-gray-700 text-white rounded">
+        <button type="submit" class="w-full bg-green-500 hover:bg-green-600 py-2 rounded text-white">Giriş Yap</button>
+      </form>
+      <p class="mt-4 text-center text-sm text-gray-400">
+        Admin değil misiniz? <a href="login.html" class="text-blue-400 hover:underline">Kullanıcı Girişi</a>
+      </p>
+    </div>
+  </main>
 </body>
 </html>

@@ -1,41 +1,41 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Admin Paneli - KralPin</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <script src="script.js" defer></script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-900 text-white">
+<body class="bg-gray-900 text-white min-h-screen">
   <header class="bg-gray-800 p-4 flex justify-between items-center">
-    <h1 class="text-2xl font-bold text-green-400">KralPin Admin</h1>
+    <h1 class="text-2xl font-bold text-green-400">KralPin Admin Paneli</h1>
     <nav>
-      <a href="admin-sales.html" class="mx-3 hover:text-green-400">Satışlar</a>
-<a href="admin-add.html" class="mx-3 hover:text-green-400">Admin Ekle</a>
-      <a href="admin.html" onclick="logout()" class="mx-3 text-red-400 hover:underline">Çıkış Yap</a>
+      <a href="index.html" class="mx-3 hover:text-green-400">Siteye Dön</a>
+      <a href="admin-sales.html" class="mx-3 hover:text-green-400">Satış Geçmişi</a>
     </nav>
   </header>
 
   <main class="p-6 max-w-4xl mx-auto">
-    <h2 class="text-2xl font-bold text-green-400 mb-4">Ürün Ekle</h2>
-    <form id="productForm" class="grid gap-4 mb-8">
-      <input id="title" type="text" placeholder="Ürün Adı" class="p-2 bg-gray-700 text-white rounded" required />
-      <input id="image" type="text" placeholder="Görsel URL" class="p-2 bg-gray-700 text-white rounded" required />
-      <input id="icon" type="text" placeholder="Icon URL" class="p-2 bg-gray-700 text-white rounded" required />
-      <textarea id="options" placeholder="Seçenekler (örnek: 475 VP|100 TL, 1000 VP|200 TL)" class="p-2 bg-gray-700 text-white rounded" required></textarea>
+    <h2 class="text-2xl font-bold mb-6 text-green-400">Ürün Ekle</h2>
+    <form id="productForm" class="bg-gray-800 p-4 rounded mb-8">
+      <label class="block mb-2">Başlık</label>
+      <input id="title" type="text" class="p-2 w-full mb-4 bg-gray-700 text-white rounded" />
+
+      <label class="block mb-2">Görsel URL</label>
+      <input id="image" type="text" class="p-2 w-full mb-4 bg-gray-700 text-white rounded" />
+
+      <label class="block mb-2">Logo/Icon URL</label>
+      <input id="icon" type="text" class="p-2 w-full mb-4 bg-gray-700 text-white rounded" />
+
+      <label class="block mb-2">Seçenekler (format: etiket|fiyat, etiket|fiyat)</label>
+      <input id="options" type="text" placeholder="örnek: 475 VP|110 TL, 1000 VP|245 TL" class="p-2 w-full mb-4 bg-gray-700 text-white rounded" />
+
       <button type="submit" class="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded">Ürünü Kaydet</button>
     </form>
 
-    <div class="mb-12">
-      <h3 class="text-xl font-bold mb-2 text-green-400">Şifre Değiştir</h3>
-      <input type="password" id="old-admin-pass" placeholder="Mevcut Şifre" class="p-2 bg-gray-700 text-white rounded block w-full mb-2" />
-      <input type="password" id="new-admin-pass" placeholder="Yeni Şifre" class="p-2 bg-gray-700 text-white rounded block w-full mb-2" />
-      <button onclick="changeAdminPassword()" class="bg-blue-500 hover:bg-blue-600 text-white py-1 px-3 rounded">Şifreyi Güncelle</button>
-      <p id="pass-msg" class="text-sm text-green-400 mt-2 hidden">Şifre güncellendi!</p>
-    </div>
-
+    <h2 class="text-2xl font-bold mb-4 text-green-400">Mevcut Ürünler</h2>
     <div id="admin-products" class="space-y-4">
-      <!-- JS ile ürün listesi gelecek -->
+      <!-- script.js ile dolacak -->
     </div>
   </main>
 </body>
