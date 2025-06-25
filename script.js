@@ -343,3 +343,8 @@ function renderPurchaseHistory() {
   </li>
 `).join("");
 
+document.addEventListener("DOMContentLoaded", () => {
+  if (document.getElementById("product-list")) renderProducts();
+});
+
+
