@@ -41,7 +41,8 @@ const defaultProducts = [
       { label: "130 VP", price: "60 TL" },
       { label: "475 VP", price: "130 TL" },
       { label: "1000 VP", price: "248 TL" }
-    ]
+    ],
+    codes: ["ABC123", "XYZ456", "LMN789"]
   },
   {
     title: "League of Legends RP",
@@ -50,7 +51,8 @@ const defaultProducts = [
     options: [
       { label: "575 RP", price: "130 TL" },
       { label: "1380 RP", price: "250 TL" }
-    ]
+    ],
+    codes: ["ABC123", "XYZ456", "LMN789"]
   },
   {
     title: "Steam Random Key",
@@ -58,6 +60,7 @@ const defaultProducts = [
     icon: "img/steamkey.png",
     options: [{ label: "1 Adet", price: "20 TL" }],
     isQuantityBased: true
+    codes: ["ABC123", "XYZ456", "LMN789"]
   },
   {
     title: "Google Play Kod",
@@ -66,7 +69,8 @@ const defaultProducts = [
     options: [
       { label: "50 TL Kod", price: "50 TL" },
       { label: "100 TL Kod", price: "100 TL" }
-    ]
+    ],
+    codes: ["ABC123", "XYZ456", "LMN789"]
   }
 ];
 
