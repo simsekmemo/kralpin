@@ -252,40 +252,6 @@ function removeItem(index) {
   renderCart();
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  if (document.getElementById("product-list")) renderProducts();
-  if (document.getElementById("cart")) renderCart();
-});
-
-function renderFavorites() {
-  const favoritesContainer = document.getElementById("favorites-list");
-  if (!favoritesContainer) return;
-
-  const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
-  const products = getProducts();
-
-  const favoriteProducts = products.filter(p => favorites.includes(p.title));
-
-  if (favoriteProducts.length === 0) {
-    favoritesContainer.innerHTML = "<p class='text-gray-400'>Favori ürün bulunamadı.</p>";
-    return;
-  }
-
-  favoritesContainer.innerHTML = favoriteProducts.map(p => `
-    <div class="bg-gray-800 p-4 rounded shadow">
-      <img src="${p.image}" alt="${p.title}" class="mb-4 rounded w-full h-40 object-cover bg-black p-1">
-      <h3 class="text-xl font-semibold mb-2 flex items-center gap-2">
-        <img src="${p.icon}" alt="icon" class="w-6 h-6 rounded"> ${p.title}
-      </h3>
-      <p class="text-green-400 font-bold">${p.options[0].price}</p>
-    </div>
-  `).join("");
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  if (document.getElementById("favorites-list")) renderFavorites();
-});
-
 // 🧾 Satın Alma İşlemi
 document.addEventListener("DOMContentLoaded", () => {
   const purchaseBtn = document.getElementById("purchase-btn");
@@ -305,20 +271,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const newHistory = cart.map(item => {
       const product = updatedProducts.find(p => p.title === item.title);
       if (!product || !product.codes || product.codes.length === 0) {
-        return {
-          ...item,
-          code: "KOD YOK ❌"
-        };
+        return { ...item, code: "KOD YOK ❌" };
       }
-      const code = product.codes.shift(); // ilk kodu al ve havuzdan çıkar
-      return {
-        ...item,
-        code
-      };
+      const code = product.codes.shift();
+      return { ...item, code };
     });
 
     localStorage.setItem("purchaseHistory", JSON.stringify([...history, ...newHistory]));
-    localStorage.setItem("products", JSON.stringify(updatedProducts)); // kodu silinmiş hali kaydet
+    localStorage.setItem("products", JSON.stringify(updatedProducts));
     localStorage.removeItem("cart");
 
     alert("Satın alma tamamlandı. Kodlar profilinizde görülebilir.");
@@ -337,14 +297,40 @@ function renderPurchaseHistory() {
   }
 
   list.innerHTML = history.map(item => `
-  <li>
-    <div><strong>${item.title}</strong> - ${item.option} - ${item.price}</div>
-    ${item.code ? `<div><strong>Kod:</strong> ${item.code}</div>` : ""}
-  </li>
-`).join("");
+    <li>
+      <div><strong>${item.title}</strong> - ${item.option} - ${item.price}</div>
+      ${item.code ? `<div><strong>Kod:</strong> ${item.code}</div>` : ""}
+    </li>
+  `).join("");
+}
 
+function renderFavorites() {
+  const favoritesContainer = document.getElementById("favorites-list");
+  if (!favoritesContainer) return;
+
+  const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
+  const products = getProducts();
+  const favoriteProducts = products.filter(p => favorites.includes(p.title));
+
+  if (favoriteProducts.length === 0) {
+    favoritesContainer.innerHTML = "<p class='text-gray-400'>Favori ürün bulunamadı.</p>";
+    return;
+  }
+
+  favoritesContainer.innerHTML = favoriteProducts.map(p => `
+    <div class="bg-gray-800 p-4 rounded shadow">
+      <img src="${p.image}" alt="${p.title}" class="mb-4 rounded w-full h-40 object-cover bg-black p-1">
+      <h3 class="text-xl font-semibold mb-2 flex items-center gap-2">
+        <img src="${p.icon}" alt="icon" class="w-6 h-6 rounded"> ${p.title}
+      </h3>
+      <p class="text-green-400 font-bold">${p.options[0].price}</p>
+    </div>
+  `).join("");
+}
+
+// 🔁 Genel Yükleme
 document.addEventListener("DOMContentLoaded", () => {
   if (document.getElementById("product-list")) renderProducts();
+  if (document.getElementById("cart")) renderCart();
+  if (document.getElementById("favorites-list")) renderFavorites();
 });
-
-
