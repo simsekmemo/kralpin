@@ -285,3 +285,61 @@ function renderFavorites() {
 document.addEventListener("DOMContentLoaded", () => {
   if (document.getElementById("favorites-list")) renderFavorites();
 });
+
+// 🧾 Satın Alma İşlemi
+document.addEventListener("DOMContentLoaded", () => {
+  const purchaseBtn = document.getElementById("purchase-btn");
+  if (!purchaseBtn) return;
+
+  purchaseBtn.addEventListener("click", () => {
+    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    if (cart.length === 0) {
+      alert("Sepet boş!");
+      return;
+    }
+
+    const products = getProducts();
+    const updatedProducts = [...products];
+    const history = JSON.parse(localStorage.getItem("purchaseHistory") || "[]");
+
+    const newHistory = cart.map(item => {
+      const product = updatedProducts.find(p => p.title === item.title);
+      if (!product || !product.codes || product.codes.length === 0) {
+        return {
+          ...item,
+          code: "KOD YOK ❌"
+        };
+      }
+      const code = product.codes.shift(); // ilk kodu al ve havuzdan çıkar
+      return {
+        ...item,
+        code
+      };
+    });
+
+    localStorage.setItem("purchaseHistory", JSON.stringify([...history, ...newHistory]));
+    localStorage.setItem("products", JSON.stringify(updatedProducts)); // kodu silinmiş hali kaydet
+    localStorage.removeItem("cart");
+
+    alert("Satın alma tamamlandı. Kodlar profilinizde görülebilir.");
+    window.location.href = "profile.html";
+  });
+});
+
+function renderPurchaseHistory() {
+  const history = JSON.parse(localStorage.getItem("purchaseHistory") || "[]");
+  const list = document.getElementById("purchase-history");
+  if (!list) return;
+
+  if (history.length === 0) {
+    list.innerHTML = "<li>Satın alma geçmişi bulunamadı.</li>";
+    return;
+  }
+
+  list.innerHTML = history.map(item => `
+  <li>
+    <div><strong>${item.title}</strong> - ${item.option} - ${item.price}</div>
+    ${item.code ? `<div><strong>Kod:</strong> ${item.code}</div>` : ""}
+  </li>
+`).join("");
+
