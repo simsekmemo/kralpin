@@ -58,8 +58,10 @@ const defaultProducts = [
     title: "Steam Random Key",
     image: "img/steamkey.png",
     icon: "img/steamkey.png",
-    options: [{ label: "1 Adet", price: "20 TL" }],
-    isQuantityBased: true
+    options: [
+      { label: "1 Adet", price: "20 TL" }
+    ],
+    isQuantityBased: true,
     codes: ["ABC123", "XYZ456", "LMN789"]
   },
   {
