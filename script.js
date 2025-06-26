@@ -334,3 +334,18 @@ document.addEventListener("DOMContentLoaded", () => {
   if (document.getElementById("cart")) renderCart();
   if (document.getElementById("favorites-list")) renderFavorites();
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const currentUser = JSON.parse(localStorage.getItem("currentUser") || "{}");
+  const accountLink = document.getElementById("accountLink");
+
+  if (accountLink) {
+    if (currentUser && currentUser.email) {
+      accountLink.textContent = "Hesabım";
+      accountLink.href = "profile.html";
+    } else {
+      accountLink.textContent = "Giriş Yap / Kayıt Ol";
+      accountLink.href = "login.html";
+    }
+  }
+});
